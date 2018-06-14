@@ -8,15 +8,15 @@ type action =
   | SetData(string)
   | SetError;
 
-let component = ReasonReact.reducerComponent("ChildrenProps");
+let component = ReasonReact.reducerComponent("GithubImageProvider");
 
 let make = (~githubName, children) => {
   ...component,
   initialState: () => {avatar_url: "", error: ""},
   reducer: (action, state) =>
     switch (action) {
-    | SetData(name) => ReasonReact.Update({...state, avatar_url: name, error: ""})
-    | SetError => ReasonReact.Update({...state, avatar_url: "", error: "Error"})
+    | SetData(name) => ReasonReact.Update({avatar_url: name, error: ""})
+    | SetError => ReasonReact.Update({avatar_url: "", error: "Error"})
     },
   didMount: self => {
     Js.Promise.(
