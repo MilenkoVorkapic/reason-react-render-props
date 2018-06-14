@@ -2,5 +2,5 @@ let component = ReasonReact.statelessComponent("RenderProps")
 
 let make = (~render, _children) => {
   ...component,
-  render: self => render(1)
+  render: _self => render(1)
 }

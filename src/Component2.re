@@ -46,7 +46,7 @@ let component = ReasonReact.reducerComponent("Example");
       <Component1 props={self.handle(click)} message=(printedState) />
 
       <ChildrenAsProps>
-        ...((text) => <h1> (s(text))</h1>)
+        ...{(text) => <h1> (s(text))</h1>}
       </ChildrenAsProps>
 
       <RenderProps render={(number) => <h1>(s(string_of_int(number)))</h1>} />
