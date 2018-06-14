@@ -20,7 +20,9 @@
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": [
-    "reason-react"
+    "reason-react",
+    "bs-axios",
+    "bs-json"
   ],
   "refmt": 3
 }

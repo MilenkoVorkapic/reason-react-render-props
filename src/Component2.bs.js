@@ -32,7 +32,6 @@ function make() {
           /* render */(function (self) {
               var message = "Counter " + String(self[/* state */1][/* count */0]);
               var printedState = message + " State is now shown";
-              var match = self[/* state */1][/* show */1];
               return React.createElement("div", undefined, React.createElement("button", {
                               onClick: (function () {
                                   return Curry._1(self[/* send */3], /* Increment */0);
@@ -43,8 +42,16 @@ function make() {
                                 })
                             }, "Decrement"), React.createElement("div", undefined, React.createElement("button", {
                                   onClick: Curry._1(self[/* handle */0], click)
-                                }, "Toggle the state")), match ? React.createElement("h1", undefined, printedState) : null, ReasonReact.element(/* None */0, /* None */0, Component1$ReactTemplate.make(Curry._1(self[/* handle */0], click), printedState, /* array */[])), ReasonReact.element(/* None */0, /* None */0, ChildrenAsProps$ReactTemplate.make((function (text) {
-                                    return React.createElement("h1", undefined, text);
+                                }, "Toggle the state")), ReasonReact.element(/* None */0, /* None */0, Component1$ReactTemplate.make(Curry._1(self[/* handle */0], click), printedState, /* array */[])), React.createElement("input", {
+                              value: self[/* state */1][/* search */2],
+                              onChange: (function ($$event) {
+                                  return Curry._1(self[/* send */3], /* Search */[$$event.target.value]);
+                                })
+                            }), ReasonReact.element(/* None */0, /* None */0, ChildrenAsProps$ReactTemplate.make(self[/* state */1][/* search */2], (function (img, err) {
+                                    var match = err !== "";
+                                    return React.createElement("div", undefined, match ? React.createElement("p", undefined, err) : React.createElement("img", {
+                                                      src: img
+                                                    }));
                                   }))), ReasonReact.element(/* None */0, /* None */0, RenderProps$ReactTemplate.make((function (number) {
                                     return React.createElement("h1", undefined, String(number));
                                   }), /* array */[])));
@@ -52,28 +59,40 @@ function make() {
           /* initialState */(function () {
               return /* record */[
                       /* count */0,
-                      /* show */false
+                      /* show */false,
+                      /* search */"Milenkoo"
                     ];
             }),
           /* retainedProps */component[/* retainedProps */11],
           /* reducer */(function (action, state) {
-              switch (action) {
-                case 0 : 
-                    return /* Update */Block.__(0, [/* record */[
-                                /* count */state[/* count */0] + 1 | 0,
-                                /* show */state[/* show */1]
-                              ]]);
-                case 1 : 
-                    return /* Update */Block.__(0, [/* record */[
-                                /* count */state[/* count */0] - 1 | 0,
-                                /* show */state[/* show */1]
-                              ]]);
-                case 2 : 
-                    return /* Update */Block.__(0, [/* record */[
-                                /* count */state[/* count */0],
-                                /* show */!state[/* show */1]
-                              ]]);
-                
+              if (typeof action === "number") {
+                switch (action) {
+                  case 0 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* count */state[/* count */0] + 1 | 0,
+                                  /* show */state[/* show */1],
+                                  /* search */state[/* search */2]
+                                ]]);
+                  case 1 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* count */state[/* count */0] - 1 | 0,
+                                  /* show */state[/* show */1],
+                                  /* search */state[/* search */2]
+                                ]]);
+                  case 2 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* count */state[/* count */0],
+                                  /* show */!state[/* show */1],
+                                  /* search */state[/* search */2]
+                                ]]);
+                  
+                }
+              } else {
+                return /* Update */Block.__(0, [/* record */[
+                            /* count */state[/* count */0],
+                            /* show */state[/* show */1],
+                            /* search */action[0]
+                          ]]);
               }
             }),
           /* subscriptions */component[/* subscriptions */13],
